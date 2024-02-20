@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="List of contact records" icon-name="custom:custom24">
+        <template if:true={conlist.data}>
+            <!--sldsValidatorIgnoreNextLine-->
+            <lightning-datatable
+            key-field="Id"
+            data={conlist.data}
+            columns={columns}
+            >
+        </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

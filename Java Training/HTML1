@@ -1,0 +1,21 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Note Taking App</title>
+</head>
+<body>
+    <div id="app" class="app">
+        <div class="note-input">
+            <input type="text" id="newNote" placeholder="New Note">
+            <button onclick="addNote()">Add Note</button>
+        </div>
+        <ul id="noteList" class="note-list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

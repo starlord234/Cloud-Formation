@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Get Account List" icon-name="custom:custom55">
+        <div class="slds-m-around_medium">
+            <template lwc:if={listOfAccount.data}>
+                <template for:each={listOfAccount.data} for:item="accountlist">
+                    <p key={accountlist.id}>{accountlist.name}</p>
+                </template>
+            </template>
+            <template lwc:else>
+               No accounts found
+            </template>
+        </div>
+    </lightning-card> 
+</template>

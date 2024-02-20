@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title={title}>
+        <lightning-input label="Enter your Height" type="number" onchange={handleHeightChange} class="slds-p-around_medium lgc-bg"></lightning-input>
+        <lightning-input label="Enter your weight" type="number" onchange={handleWeightChange} class="slds-p-around_medium lgc-bg"></lightning-input>
+        <lightning-button label="Calculate Bmi" onclick={handleClick} class="slds-p-around_medium lgc-bg"></lightning-button>
+        <div class="slds-p-around_medium lgc-bg">
+            <h2> Result: {result}</h2>
+        </div>
+    </lightning-card>  
+</template>

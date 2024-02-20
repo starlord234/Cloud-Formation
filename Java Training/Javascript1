@@ -1,0 +1,21 @@
+// script.js
+function addNote() {
+    var newNoteInput = document.getElementById("newNote");
+    var noteList = document.getElementById("noteList");
+
+    var noteText = newNoteInput.value.trim();
+    
+    if (noteText !== "") {
+        var li = document.createElement("li");
+        li.innerHTML = noteText + '<button onclick="deleteNote(this)">Delete</button>';
+        noteList.appendChild(li);
+
+        newNoteInput.value = "";
+    }
+}
+
+function deleteNote(button) {
+    var li = button.parentNode;
+    var noteList = li.parentNode;
+    noteList.removeChild(li);
+}

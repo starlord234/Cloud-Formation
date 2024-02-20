@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Account search" icon-name="custom:custom14">
+      <div class = "slds-m-around_medium">
+        <lightning-input= "search" onchange={handleChange} class="slds-m-bottom_small" label="search">
+         </lightning-input>
+         <template if:true={accounts.data}>
+            <template for:each={accounts.data} for:item="acc">
+                <li>
+                 {acc.name}
+                 {acc.Industry}
+                </li>
+            </template>
+         </template>
+      </div>
+    </lightning-card>   
+</template>

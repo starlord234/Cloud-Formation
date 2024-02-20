@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="ApexWireMethodToProperty" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <template lwc:if={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <p key={contact.id}>{contact.name}</p>
+                </template>
+            </template>
+            <template lwc:else>
+                No contacts found!
+            </template>
+        </div>
+        </div>
+    </lightning-card> 
+</template>

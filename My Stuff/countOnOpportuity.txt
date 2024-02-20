@@ -1,0 +1,75 @@
+Trigger countNumberOfOpp on Opportunity(After Insert,After Update, After Delete, After undelete){
+  
+  if(Trigger.isAfter && trigger.IsInsert || trigger.IsUndelete ){
+      OpportunityHandler.OppInsOrUnDel(Trigger.New);
+
+  }
+   
+    if(Trigger.isAfter && trigger.IsDelete){
+      	  OpportunityHandler.OppInsOrUnDel(Trigger.old);
+	     
+	 }
+	 
+	 if(Trigger.isAfter && trigger.IsUpdate){
+      	  OpportunityHandler.OppUpd(Trigger.New, Trigger.OldMap);
+	     
+	 }
+  }
+}
+
+public static void OppInsOrUnDel(list<Opportunity> lstofNewRecords){
+
+    set<Id> accIds = new set<Id>();
+	list<account> lstOfAcs = new list<account>();
+	
+   for(opportunity opp : lstofNewRecords){
+       if(opp.accountId != Null){
+	      accIds.add(opp.AccountId);
+	   }
+	 }  
+	 for(Account acc : [select id,Count,(select id from Opportunity) from Account where Id IN : accIds]){
+	        acc.count = acc.Opportunities.size();
+	         lstOfAcs.add(acc);
+	
+	}  
+	
+	update lstOfAcs;
+   
+}
+
+public static void OppDel(list<Opportunity> lstofOldRecords){
+
+  set<Id> accIds = new set<Id>();
+	list<account> lstOfAcs = new list<account>();
+	
+   for(opportunity opp : lstofOldRecords){
+       if(opp.accountId != Null){
+	      accIds.add(opp.AccountId);
+	   }
+	 }
+
+
+public static void OppUpd(list<Opportunity> lstofNewRecords,Map<id,Opportunity> mapOfOldopps){
+    
+	set<Id> accIds = new set<Id>();
+	list<account> lstOfAcs = new list<account>();
+	
+   for(opportunity opp : lstofNewRecords){
+   
+     
+       if(opp.accountId != Null && opp.accountId != mapOfOldopps.get(opp.id).accountId ){
+	         accIds.add(opp.AccountId);
+		     accIds.add(mapOfOldopps.get(opp.id).AccountId);
+	   }
+	     for(Account acc : [select id,Count,(select id from Opportunity) from Account where Id IN : accIds]){
+	              acc.count = acc.Opportunities.size();
+	              lstOfAcs.add(acc);
+	
+	}  
+	
+	update lstOfAcs;
+}
+}
+
+
+
